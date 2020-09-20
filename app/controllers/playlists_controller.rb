@@ -7,7 +7,7 @@ class PlaylistsController < ApplicationController
       
         def show
           playlist = Playlist.find(params[:id])
-          render json: PlaylistSerializer.new(playlists).serialized_json
+          render json: PlaylistSerializer.new(playlist).serialized_json
         end
       
         def create
