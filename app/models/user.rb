@@ -4,6 +4,6 @@ class User < ApplicationRecord
 
     # accepts_nested_attributes_for :playlists, reject_if: :all_blank
 
-    # validates :user_id, :name, presence: true
-    # validates :user_id, uniqueness: true
+    validates :name, presence: true
+    # validates :email, uniqueness: true
 end

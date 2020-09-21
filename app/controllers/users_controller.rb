@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
+    user = User.find_by_id(params[:id])
     options = { include: [:playlists] }
-    render json: UserSerializer.new(users, options).serialized_json
+    render json: UserSerializer.new(user, options).serialized_json
   end
 
   def create
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       options = { include: [:playlists] }
       render json: UserSerializer.new(user, options).serialized_json
     else
-      render json: { error: 'Could not be created' }
+      render json: { error: 'User could not be created' }
     end
   end
 
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:uder_id, :name, :description,
+    params.require(:user).permit(:name, :description,
     )
   end
 
