@@ -5,4 +5,6 @@ class PlaylistSerializer
 
   has_many :user_playlists
   has_many :users, through: :user_playlists
+
+  has_many :playlist_songs
 end
