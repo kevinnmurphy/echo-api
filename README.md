@@ -22,5 +22,5 @@ Things you may want to cover:
 
 - Deployment instructions
   'rails s'
-  Navigate to 'localhost:3000' to view data
+  Navigate to 'localhost:3001' to view data
 - ...
