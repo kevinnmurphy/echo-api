@@ -39,6 +39,7 @@ class PlaylistsController < ApplicationController
         end
       
         def destroy
+          playlist = Playlist.find(params[:id])
           if playlist.destroy
             render json: PlaylistSerializer.new(playlist).serialized_json
           else
