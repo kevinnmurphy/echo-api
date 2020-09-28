@@ -13,9 +13,9 @@ class PlaylistsController < ApplicationController
         end
       
         def create
-          # @user = User.find(params[:user_id])
-          playlist = Playlist.new(playlist_params)
-          # playlist = @user.playlist.build(playlist_params)
+          user = User.find(params[:user_id])
+          # playlist = Playlist.new(playlist_params)
+          playlist = user.playlist.build(playlist_params)
           # playlist.user = @current_user
           if playlist.save
             # user.playlists << playlist
@@ -28,11 +28,23 @@ class PlaylistsController < ApplicationController
         def update
           playlist = Playlist.find(params[:id])
           # playlist = current_user.playlists.find(:id)
+          if params[:user_ids].each do |uid| 
+            user = User.find(playlist_params[:user_ids])
+            user.playlists << playlist
+          end
+          end
+          
           if playlist.update(playlist_params)
           render json: PlaylistSerializer.new(playlist).serialized_json
           else
             render json: { error: 'Could not be updated' }
           end
+        end
+
+        def remove_playlist
+          user = User.find(id)
+          playlist = Playlist.find(params[:id])
+          user.playlists.remove(playlist)
         end
       
         def destroy
@@ -48,7 +60,7 @@ class PlaylistsController < ApplicationController
         private
         
         def playlist_params
-          params.require(:playlist).permit(:name, :description, :pic_url, user_ids: []
+          params.require(:playlist).permit(:name, :description, :pic_url, :user_ids
           )
         end
       
