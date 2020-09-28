@@ -4,11 +4,21 @@ class PlaylistsController < ApplicationController
           playlists = Playlist.all.order(id: :asc)
           render json: PlaylistSerializer.new(playlists).serialized_json
         end
+  
+        # def index 
+        #   playlists = Playlist.all.order(id: :asc)
+        #   render json: playlists, include: [:users, :playlist_songs]
+        # end
       
         def show
           playlist = Playlist.find_by_id(params[:id])
           render json: PlaylistSerializer.new(playlist).serialized_json
         end
+
+        # def show
+        #   playlist = Playlist.find_by_id(params[:id])
+        #   render json: playlist, include: [:users, :playlist_songs]
+        # end
       
         def create
           # @user = User.find(params[:user_id])
@@ -34,8 +44,6 @@ class PlaylistsController < ApplicationController
         end
       
         def destroy
-          playlist = Playlist.find(params[:id])
-          # playlist = current_user.playlists.find(params[:id])
           if playlist.destroy
             render json: PlaylistSerializer.new(playlist).serialized_json
           else
