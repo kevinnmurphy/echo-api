@@ -1,18 +1,15 @@
 class PlaylistsController < ApplicationController
 
-        # def index 
-        #   playlists = Playlist.all.order(id: :asc)
-        #   render json: PlaylistSerializer.new(playlists, include: [:users]).serialized_json
-        # end
-
         def index 
           playlists = Playlist.all.order(id: :asc)
-          render json: PlaylistSerializer.new(playlists).serialized_json
+          options = { include: [:users] }
+          render json: PlaylistSerializer.new(playlists, options).serialized_json
         end
       
         def show
           playlist = Playlist.find_by_id(params[:id])
-          render json: PlaylistSerializer.new(playlist).serialized_json
+          options = { include: [:users] }
+          render json: PlaylistSerializer.new(playlist, options).serialized_json
         end
       
         def create
