@@ -21,3 +21,9 @@ UserPlaylist.create([
     {user_id: '2', playlist_id: '3'},
     {user_id: '2', playlist_id: '4'},
 ])
+
+PlaylistSong.create([
+    {playlist_id: '1', position:'0', spotify_id:'7ouMYWpwJ422jRcDASZB7P'},
+    {playlist_id: '1', position:'1', spotify_id:'4VqPOruhp5EdPBeR92t6lQ'},
+    {playlist_id: '1', position:'2', spotify_id:'2takcwOaAZWiXQijPHIx7B'},
+])

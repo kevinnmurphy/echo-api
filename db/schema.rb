@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2020_09_21_163112) do
   enable_extension "plpgsql"
 
   create_table "playlist_songs", force: :cascade do |t|
-    t.integer "position"
-    t.string "song_id"
+    t.string "position"
+    t.string "spotify_id"
     t.bigint "playlist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_163112) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "playlist_songs", "playlists"
   add_foreign_key "user_playlists", "playlists"
   add_foreign_key "user_playlists", "users"
 end

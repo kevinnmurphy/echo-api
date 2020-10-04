@@ -2,13 +2,13 @@ class PlaylistsController < ApplicationController
 
         def index 
           playlists = Playlist.all.order(id: :asc)
-          options = { include: [:users] }
+          options = { include: [:users, :playlist_songs] }
           render json: PlaylistSerializer.new(playlists, options).serialized_json
         end
       
         def show
           playlist = Playlist.find_by_id(params[:id])
-          options = { include: [:users] }
+          options = { include: [:users, :playlist_songs] }
           render json: PlaylistSerializer.new(playlist, options).serialized_json
         end
       
@@ -61,7 +61,7 @@ class PlaylistsController < ApplicationController
         private
         
         def playlist_params
-          params.require(:playlist).permit(:name, :description, :pic_url, :user_ids
+          params.require(:playlist).permit(:name, :description, :pic_url, :user_ids, :spotify_id
           )
         end
       

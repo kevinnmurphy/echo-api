@@ -1,4 +1,4 @@
 class PlaylistSongSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :position
+  attributes :position, :spotify_id
 end
