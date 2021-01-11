@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  # cookies.signed[:ugid]
   def index 
     users = User.all.order(id: :asc)
     options = { include: [:playlists] }
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :description,
+    params.require(:user).permit(:name, :description, :email, :pic_url
     )
   end
 
